@@ -1,0 +1,38 @@
+name: lightrag
+services:
+  # The postgres database.
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: lightrag-postgres-pgvector
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: difyai123456
+      POSTGRES_DB: dify
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./volumes/db/data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"] 
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  qdrant:
+    image: qdrant/qdrant:v1.15.5
+    profiles:
+      - ""
+      - qdrant
+    restart: always
+    volumes:
+      - ./volumes/qdrant:/qdrant/storage
+    env_file:
+      - ./.env
+    environment:
+      QDRANT_API_KEY: ${QDRANT_API_KEY:-difyai123456}
+    ports:
+      - "6335:6333"
+      - "6336:6334"

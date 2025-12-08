@@ -97,76 +97,106 @@ Based on the last extraction task, identify and extract any **missed or incorrec
 
 <Output>
 """
-
 PROMPTS["entity_extraction_examples"] = [
     """<Input Text>
 ```
-while Alex clenched his jaw, the buzz of frustration dull against the backdrop of Taylor's authoritarian certainty. It was this competitive undercurrent that kept him alert, the sense that his and Jordan's shared commitment to discovery was an unspoken rebellion against Cruz's narrowing vision of control and order.
-
-Then Taylor did something unexpected. They paused beside Jordan and, for a moment, observed the device with something akin to reverence. "If this tech can be understood..." Taylor said, their voice quieter, "It could change the game for us. For all of us."
-
-The underlying dismissal earlier seemed to falter, replaced by a glimpse of reluctant respect for the gravity of what lay in their hands. Jordan looked up, and for a fleeting heartbeat, their eyes locked with Taylor's, a wordless clash of wills softening into an uneasy truce.
-
-It was a small transformation, barely perceptible, but one that Alex noted with an inward nod. They had all been brought here by different paths
+减少钠盐摄入,增加富钾食物摄入有助于降低血压。WHO建议摄盐量应<5g/d,老年高血压患者应适度限盐,减少烹调用盐及酱油等钠含量高的调味品，推荐肾功能良好者选择低钠富钾替代盐。鼓励老年人摄入多种新鲜蔬菜、水果、鱼类、豆制品、粗粮、脱脂奶及其他富含钾、钙、膳食纤维、多不饱和脂肪酸的食物。
 ```
 
 <Output>
-entity{tuple_delimiter}Alex{tuple_delimiter}person{tuple_delimiter}Alex is a character who experiences frustration and is observant of the dynamics among other characters.
-entity{tuple_delimiter}Taylor{tuple_delimiter}person{tuple_delimiter}Taylor is portrayed with authoritarian certainty and shows a moment of reverence towards a device, indicating a change in perspective.
-entity{tuple_delimiter}Jordan{tuple_delimiter}person{tuple_delimiter}Jordan shares a commitment to discovery and has a significant interaction with Taylor regarding a device.
-entity{tuple_delimiter}Cruz{tuple_delimiter}person{tuple_delimiter}Cruz is associated with a vision of control and order, influencing the dynamics among other characters.
-entity{tuple_delimiter}The Device{tuple_delimiter}equipment{tuple_delimiter}The Device is central to the story, with potential game-changing implications, and is revered by Taylor.
-relation{tuple_delimiter}Alex{tuple_delimiter}Taylor{tuple_delimiter}power dynamics, observation{tuple_delimiter}Alex observes Taylor's authoritarian behavior and notes changes in Taylor's attitude toward the device.
-relation{tuple_delimiter}Alex{tuple_delimiter}Jordan{tuple_delimiter}shared goals, rebellion{tuple_delimiter}Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.)
-relation{tuple_delimiter}Taylor{tuple_delimiter}Jordan{tuple_delimiter}conflict resolution, mutual respect{tuple_delimiter}Taylor and Jordan interact directly regarding the device, leading to a moment of mutual respect and an uneasy truce.
-relation{tuple_delimiter}Jordan{tuple_delimiter}Cruz{tuple_delimiter}ideological conflict, rebellion{tuple_delimiter}Jordan's commitment to discovery is in rebellion against Cruz's vision of control and order.
-relation{tuple_delimiter}Taylor{tuple_delimiter}The Device{tuple_delimiter}reverence, technological significance{tuple_delimiter}Taylor shows reverence towards the device, indicating its importance and potential impact.
+entity{tuple_delimiter}钠盐摄入{tuple_delimiter}饮食{tuple_delimiter}减少钠盐摄入是高血压饮食管理的基础措施，WHO建议摄盐量<5g/d
+entity{tuple_delimiter}富钾食物{tuple_delimiter}饮食{tuple_delimiter}增加富钾食物摄入如新鲜蔬菜、水果等，有助于血压控制
+entity{tuple_delimiter}高钠调味品{tuple_delimiter}饮食{tuple_delimiter}烹调用盐、酱油等高钠调味品需限制使用
+entity{tuple_delimiter}低钠富钾替代盐{tuple_delimiter}饮食{tuple_delimiter}推荐肾功能良好者使用的钠盐替代品，减少钠摄入
+entity{tuple_delimiter}摄盐量标准{tuple_delimiter}检查项目{tuple_delimiter}WHO建议摄盐量<5g/d的量化标准，用于评估饮食依从性
+entity{tuple_delimiter}肾功能评估{tuple_delimiter}检查项目{tuple_delimiter}使用低钠富钾替代盐前需进行的肾功能检查，确保安全
+entity{tuple_delimiter}高血压{tuple_delimiter}疾病{tuple_delimiter}老年常见慢性病，需长期管理
+relation{tuple_delimiter}钠盐摄入{tuple_delimiter}高血压{tuple_delimiter}饮食控制{tuple_delimiter}减少钠盐摄入直接降低高血压风险
+relation{tuple_delimiter}富钾食物{tuple_delimiter}高血压{tuple_delimiter}营养干预{tuple_delimiter}增加富钾食物辅助血压管理
+relation{tuple_delimiter}高钠调味品{tuple_delimiter}钠盐摄入{tuple_delimiter}来源控制{tuple_delimiter}限制高钠调味品是控制钠盐摄入的关键
+relation{tuple_delimiter}低钠富钾替代盐{tuple_delimiter}钠盐摄入{tuple_delimiter}替代方案{tuple_delimiter}低钠富钾替代盐有效减少钠摄入
+relation{tuple_delimiter}摄盐量标准{tuple_delimiter}钠盐摄入{tuple_delimiter}量化指导{tuple_delimiter}摄盐量标准为钠盐摄入提供具体目标
+relation{tuple_delimiter}肾功能评估{tuple_delimiter}低钠富钾替代盐{tuple_delimiter}安全前提{tuple_delimiter}肾功能评估是使用替代盐的安全基础
 {completion_delimiter}
 
 """,
     """<Input Text>
 ```
-Stock markets faced a sharp downturn today as tech giants saw significant declines, with the global tech index dropping by 3.4% in midday trading. Analysts attribute the selloff to investor concerns over rising interest rates and regulatory uncertainty.
-
-Among the hardest hit, nexon technologies saw its stock plummet by 7.8% after reporting lower-than-expected quarterly earnings. In contrast, Omega Energy posted a modest 2.1% gain, driven by rising oil prices.
-
-Meanwhile, commodity markets reflected a mixed sentiment. Gold futures rose by 1.5%, reaching $2,080 per ounce, as investors sought safe-haven assets. Crude oil prices continued their rally, climbing to $87.60 per barrel, supported by supply constraints and strong demand.
-
-Financial experts are closely watching the Federal Reserve's next move, as speculation grows over potential rate hikes. The upcoming policy announcement is expected to influence investor confidence and overall market stability.
+老年高血压及高血压前期患者进行合理的有氧运动可有效降低血压。抗阻运动还可以增加肌肉力量，预防和改善老年衰弱。建议老年人进行适当的规律运动，≥5d/周，≥30min/d，如步行、慢跑、游泳等。以中等强度有氧运动为主，结合抗阻运动、平衡训练、呼吸训练与柔韧性和拉伸训练等。不推荐老年人剧烈运动。
 ```
 
 <Output>
-entity{tuple_delimiter}Global Tech Index{tuple_delimiter}category{tuple_delimiter}The Global Tech Index tracks the performance of major technology stocks and experienced a 3.4% decline today.
-entity{tuple_delimiter}Nexon Technologies{tuple_delimiter}organization{tuple_delimiter}Nexon Technologies is a tech company that saw its stock decline by 7.8% after disappointing earnings.
-entity{tuple_delimiter}Omega Energy{tuple_delimiter}organization{tuple_delimiter}Omega Energy is an energy company that gained 2.1% in stock value due to rising oil prices.
-entity{tuple_delimiter}Gold Futures{tuple_delimiter}product{tuple_delimiter}Gold futures rose by 1.5%, indicating increased investor interest in safe-haven assets.
-entity{tuple_delimiter}Crude Oil{tuple_delimiter}product{tuple_delimiter}Crude oil prices rose to $87.60 per barrel due to supply constraints and strong demand.
-entity{tuple_delimiter}Market Selloff{tuple_delimiter}category{tuple_delimiter}Market selloff refers to the significant decline in stock values due to investor concerns over interest rates and regulations.
-entity{tuple_delimiter}Federal Reserve Policy Announcement{tuple_delimiter}category{tuple_delimiter}The Federal Reserve's upcoming policy announcement is expected to impact investor confidence and market stability.
-entity{tuple_delimiter}3.4% Decline{tuple_delimiter}category{tuple_delimiter}The Global Tech Index experienced a 3.4% decline in midday trading.
-relation{tuple_delimiter}Global Tech Index{tuple_delimiter}Market Selloff{tuple_delimiter}market performance, investor sentiment{tuple_delimiter}The decline in the Global Tech Index is part of the broader market selloff driven by investor concerns.
-relation{tuple_delimiter}Nexon Technologies{tuple_delimiter}Global Tech Index{tuple_delimiter}company impact, index movement{tuple_delimiter}Nexon Technologies' stock decline contributed to the overall drop in the Global Tech Index.
-relation{tuple_delimiter}Gold Futures{tuple_delimiter}Market Selloff{tuple_delimiter}market reaction, safe-haven investment{tuple_delimiter}Gold prices rose as investors sought safe-haven assets during the market selloff.
-relation{tuple_delimiter}Federal Reserve Policy Announcement{tuple_delimiter}Market Selloff{tuple_delimiter}interest rate impact, financial regulation{tuple_delimiter}Speculation over Federal Reserve policy changes contributed to market volatility and investor selloff.
+entity{tuple_delimiter}有氧运动{tuple_delimiter}运动{tuple_delimiter}如步行、慢跑、游泳等可有效降低血压的运动形式
+entity{tuple_delimiter}抗阻运动{tuple_delimiter}运动{tuple_delimiter}可增加肌肉力量，预防和改善老年衰弱的运动类型
+entity{tuple_delimiter}运动频率{tuple_delimiter}运动{tuple_delimiter}建议运动频率≥5天/周的运动执行标准
+entity{tuple_delimiter}运动时长{tuple_delimiter}运动{tuple_delimiter}建议运动时长≥30分钟/天的运动时间要求
+entity{tuple_delimiter}中等强度{tuple_delimiter}运动{tuple_delimiter}有氧运动应达到的强度水平
+entity{tuple_delimiter}剧烈运动{tuple_delimiter}运动{tuple_delimiter}不推荐老年人进行的高强度运动类型
+entity{tuple_delimiter}平衡训练{tuple_delimiter}运动{tuple_delimiter}改善稳定性的辅助运动形式
+entity{tuple_delimiter}呼吸训练{tuple_delimiter}运动{tuple_delimiter}改善肺功能的辅助运动形式
+entity{tuple_delimiter}柔韧性和拉伸训练{tuple_delimiter}运动{tuple_delimiter}提高关节活动度的辅助运动形式
+entity{tuple_delimiter}老年衰弱{tuple_delimiter}客观状态{tuple_delimiter}多器官功能下降的生理状态，需运动干预
+entity{tuple_delimiter}高血压{tuple_delimiter}疾病{tuple_delimiter}需要长期管理和控制的慢性疾病状态
+relation{tuple_delimiter}有氧运动{tuple_delimiter}高血压{tuple_delimiter}运动治疗,血压控制{tuple_delimiter}有氧运动可有效降低高血压患者血压
+relation{tuple_delimiter}抗阻运动{tuple_delimiter}老年衰弱{tuple_delimiter}预防改善,功能增强{tuple_delimiter}抗阻运动有助于预防和改善老年衰弱
+relation{tuple_delimiter}运动频率{tuple_delimiter}有氧运动{tuple_delimiter}执行标准,规律性{tuple_delimiter}运动频率指导有氧运动的规律进行
+relation{tuple_delimiter}运动时长{tuple_delimiter}有氧运动{tuple_delimiter}时间要求,持续性{tuple_delimiter}运动时长确保有氧运动的足够持续时间
+relation{tuple_delimiter}中等强度{tuple_delimiter}有氧运动{tuple_delimiter}强度标准,安全性{tuple_delimiter}中等强度是有氧运动的安全有效强度
+relation{tuple_delimiter}剧烈运动{tuple_delimiter}老年人{tuple_delimiter}禁忌事项,风险规避{tuple_delimiter}剧烈运动是老年人的运动禁忌
+relation{tuple_delimiter}平衡训练{tuple_delimiter}运动计划{tuple_delimiter}辅助组件,稳定性{tuple_delimiter}平衡训练是运动计划的重要组成部分
+relation{tuple_delimiter}呼吸训练{tuple_delimiter}运动计划{tuple_delimiter}辅助组件,肺功能{tuple_delimiter}呼吸训练增强运动耐受性和肺功能
+relation{tuple_delimiter}柔韧性和拉伸训练{tuple_delimiter}运动计划{tuple_delimiter}辅助组件,灵活性{tuple_delimiter}柔韧性和拉伸训练提高关节活动度
 {completion_delimiter}
 
 """,
     """<Input Text>
 ```
-At the World Athletics Championship in Tokyo, Noah Carter broke the 100m sprint record using cutting-edge carbon-fiber spikes.
+老年高血压患者药物治疗应遵循小剂量、长效、联合、个体化原则。常用降压药物包括钙通道阻滞剂(CCB)、血管紧张素转换酶抑制药(ACEI)、血管紧张素受体阻滞药(ARB)、利尿剂、β受体阻滞剂。降压治疗需根据患者合并疾病选择，如伴心力衰竭者首选ACEI/ARB。
 ```
 
 <Output>
-entity{tuple_delimiter}World Athletics Championship{tuple_delimiter}event{tuple_delimiter}The World Athletics Championship is a global sports competition featuring top athletes in track and field.
-entity{tuple_delimiter}Tokyo{tuple_delimiter}location{tuple_delimiter}Tokyo is the host city of the World Athletics Championship.
-entity{tuple_delimiter}Noah Carter{tuple_delimiter}person{tuple_delimiter}Noah Carter is a sprinter who set a new record in the 100m sprint at the World Athletics Championship.
-entity{tuple_delimiter}100m Sprint Record{tuple_delimiter}category{tuple_delimiter}The 100m sprint record is a benchmark in athletics, recently broken by Noah Carter.
-entity{tuple_delimiter}Carbon-Fiber Spikes{tuple_delimiter}equipment{tuple_delimiter}Carbon-fiber spikes are advanced sprinting shoes that provide enhanced speed and traction.
-entity{tuple_delimiter}World Athletics Federation{tuple_delimiter}organization{tuple_delimiter}The World Athletics Federation is the governing body overseeing the World Athletics Championship and record validations.
-relation{tuple_delimiter}World Athletics Championship{tuple_delimiter}Tokyo{tuple_delimiter}event location, international competition{tuple_delimiter}The World Athletics Championship is being hosted in Tokyo.
-relation{tuple_delimiter}Noah Carter{tuple_delimiter}100m Sprint Record{tuple_delimiter}athlete achievement, record-breaking{tuple_delimiter}Noah Carter set a new 100m sprint record at the championship.
-relation{tuple_delimiter}Noah Carter{tuple_delimiter}Carbon-Fiber Spikes{tuple_delimiter}athletic equipment, performance boost{tuple_delimiter}Noah Carter used carbon-fiber spikes to enhance performance during the race.
-relation{tuple_delimiter}Noah Carter{tuple_delimiter}World Athletics Championship{tuple_delimiter}athlete participation, competition{tuple_delimiter}Noah Carter is competing at the World Athletics Championship.
+entity{tuple_delimiter}小剂量原则{tuple_delimiter}治疗方法{tuple_delimiter}初始治疗采用小剂量，逐步调整
+entity{tuple_delimiter}长效药物{tuple_delimiter}治疗方法{tuple_delimiter}使用1次/d的长效药物控制24h血压
+entity{tuple_delimiter}联合治疗{tuple_delimiter}治疗方法{tuple_delimiter}单药不达标时采用多药联合方案
+entity{tuple_delimiter}个体化治疗{tuple_delimiter}治疗方法{tuple_delimiter}根据患者耐受性和合并症定制方案
+entity{tuple_delimiter}钙通道阻滞剂{tuple_delimiter}药物{tuple_delimiter}常用降压药，适用于多数老年患者
+entity{tuple_delimiter}ACEI{tuple_delimiter}药物{tuple_delimiter}血管紧张素转换酶抑制药，适用于心力衰竭者
+entity{tuple_delimiter}ARB{tuple_delimiter}药物{tuple_delimiter}血管紧张素受体阻滞药，替代ACEI的选择
+entity{tuple_delimiter}心力衰竭{tuple_delimiter}疾病{tuple_delimiter}常见合并症，影响降压药选择
+relation{tuple_delimiter}小剂量原则{tuple_delimiter}药物治疗{tuple_delimiter}安全基础{tuple_delimiter}小剂量起始减少不良反应
+relation{tuple_delimiter}长效药物{tuple_delimiter}血压控制{tuple_delimiter}持续作用{tuple_delimiter}长效药物确保血压平稳
+relation{tuple_delimiter}联合治疗{tuple_delimiter}血压达标{tuple_delimiter}协同增效{tuple_delimiter}联合治疗提高降压效果
+relation{tuple_delimiter}个体化治疗{tuple_delimiter}患者管理{tuple_delimiter}定制方案{tuple_delimiter}个体化治疗提升依从性
+relation{tuple_delimiter}钙通道阻滞剂{tuple_delimiter}高血压{tuple_delimiter}药物干预{tuple_delimiter}CCB是老年高血压一线药物
+relation{tuple_delimiter}ACEI{tuple_delimiter}心力衰竭{tuple_delimiter}首选治疗{tuple_delimiter}ACEI优先用于心衰患者
+relation{tuple_delimiter}ARB{tuple_delimiter}心力衰竭{tuple_delimiter}替代治疗{tuple_delimiter}ARB作为ACEI的替代选项
+{completion_delimiter}
+
+""",
+   """<Input Text>
+```
+超重或肥胖的老年高血压患者可适当控制能量摄入和增加体力活动，通过减轻体重降低血压。维持理想体质量(体质量指数20.0~23.9kg/m2)、纠正腹型肥胖[腹围≥90cm(男性)、≥85cm(女性)]有利于控制血压，减少CVD发病风险。保证6~8h夜间睡眠并改善睡眠质量对控制血压意义重大。心理平衡，保持健康心理状态，避免情绪大起大落。
+```
+
+<Output>
+entity{tuple_delimiter}能量摄入控制{tuple_delimiter}饮食{tuple_delimiter}控制能量摄入以减轻体重的饮食管理
+entity{tuple_delimiter}体力活动增加{tuple_delimiter}运动{tuple_delimiter}增加体力活动促进体重减轻
+entity{tuple_delimiter}体质量指数标准{tuple_delimiter}检查项目{tuple_delimiter}理想体质量指数20.0~23.9kg/m²的量化标准
+entity{tuple_delimiter}腹围标准{tuple_delimiter}检查项目{tuple_delimiter}男性<90cm、女性<85cm的腹围控制目标
+entity{tuple_delimiter}睡眠时长要求{tuple_delimiter}睡眠{tuple_delimiter}保证6~8h夜间睡眠的时间要求
+entity{tuple_delimiter}睡眠质量改善{tuple_delimiter}睡眠{tuple_delimiter}改善睡眠质量对血压控制的重要性
+entity{tuple_delimiter}心理平衡维护{tuple_delimiter}心理{tuple_delimiter}保持健康心理状态，避免情绪波动
+entity{tuple_delimiter}超重状态{tuple_delimiter}客观状态{tuple_delimiter}体重超过正常范围的生理状态
+entity{tuple_delimiter}肥胖状态{tuple_delimiter}客观状态{tuple_delimiter}体重显著超标的病理状态
+relation{tuple_delimiter}能量摄入控制{tuple_delimiter}超重状态{tuple_delimiter}饮食干预{tuple_delimiter}控制能量摄入改善超重状态
+relation{tuple_delimiter}体力活动增加{tuple_delimiter}肥胖状态{tuple_delimiter}运动干预{tuple_delimiter}增加体力活动改善肥胖状态
+relation{tuple_delimiter}体质量指数标准{tuple_delimiter}高血压{tuple_delimiter}目标指导{tuple_delimiter}体质量指数标准为血压管理提供目标
+relation{tuple_delimiter}腹围标准{tuple_delimiter}腹型肥胖{tuple_delimiter}诊断指标{tuple_delimiter}腹围标准是评估腹型肥胖的关键
+relation{tuple_delimiter}睡眠时长要求{tuple_delimiter}血压控制{tuple_delimiter}睡眠管理{tuple_delimiter}充足睡眠时长有助于血压稳定
+relation{tuple_delimiter}睡眠质量改善{tuple_delimiter}血压控制{tuple_delimiter}睡眠优化{tuple_delimiter}改善睡眠质量对血压调节重要
+relation{tuple_delimiter}心理平衡维护{tuple_delimiter}血压控制{tuple_delimiter}情绪管理{tuple_delimiter}心理平衡避免血压波动
+relation{tuple_delimiter}超重状态{tuple_delimiter}高血压{tuple_delimiter}风险因素{tuple_delimiter}超重状态是高血压的危险因素
+relation{tuple_delimiter}肥胖状态{tuple_delimiter}高血压{tuple_delimiter}风险关联{tuple_delimiter}肥胖状态增加高血压风险
 {completion_delimiter}
 
 """,
